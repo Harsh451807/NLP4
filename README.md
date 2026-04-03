@@ -118,54 +118,41 @@ conducted to compare different fine-tuning strategies and their impact on model 
 4. Upload `IMDB Dataset.csv` when prompted
 5. Run all cells sequentially
 
+---
 
+## 📋 Pipeline Flow
+
+- Raw CSV Data (Kaggle)
+       ↓
+- Data Preprocessing (HTML removal, cleaning, lowercase)
+       ↓
+- Data Splitting (70% Train / 15% Val / 15% Test)
+       ↓
+- Tokenization (bert-base-uncased tokenizer, MAX_LEN=256)
+       ↓
+- Model Training (4 Experiments)
+       ↓
+- Evaluation (Accuracy, Precision, Recall, F1, Confusion Matrix)
+       ↓
+- Comparison & Analysis
 
 ---
 
 ## 🔍 Sample Predictions
 
-Predictions made using the best model **(Experiment 1: Full Fine-Tuning)**
+-"This movie was absolutely wonderful!"
+-  → POSITIVE ✅ (Confidence: 99.7%)
+
+-"Terrible film. Waste of time."
+-  → NEGATIVE ❌ (Confidence: 99.8%)
+
+-"An okay movie, nothing special but watchable."
+-  → POSITIVE ✅ (Confidence: 57.5%)  ← Model correctly shows uncertainty!
+
+-"A masterpiece! Best film ever!"
+-  → POSITIVE ✅ (Confidence: 99.7%)
+
+-"Extremely boring. I fell asleep."
+-  → NEGATIVE ❌ (Confidence: 99.6%)
 
 ---
-
-> **Review:** *"This movie was absolutely wonderful! The acting was superb."*
->
-> **Prediction:** ✅ **POSITIVE** — Confidence: **99.7%**
->
-> Clear positive sentiment detected correctly with very high confidence.
-
----
-
-> **Review:** *"Terrible film. Waste of time. Awful plot and bad acting."*
->
-> **Prediction:** ❌ **NEGATIVE** — Confidence: **99.8%**
->
-> Strong negative words identified correctly.
-
----
-
-> **Review:** *"An okay movie, nothing special but watchable."*
->
-> **Prediction:** ✅ **POSITIVE** — Confidence: **57.5%** ⚠️
->
-> Mixed/neutral review. Model correctly shows **low confidence** on ambiguous text.
-> This proves the model **understands uncertainty** — not blindly predicting.
-
----
-
-> **Review:** *"A masterpiece! Best film I have ever seen in my life."*
->
-> **Prediction:** ✅ **POSITIVE** — Confidence: **99.7%**
->
-> Extremely positive sentiment detected with high confidence.
-
----
-
-> **Review:** *"Extremely boring. I fell asleep halfway through."*
->
-> **Prediction:** ❌ **NEGATIVE** — Confidence: **99.6%**
->
-> Clear negative sentiment identified correctly.
-
----
-
