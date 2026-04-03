@@ -119,36 +119,53 @@ conducted to compare different fine-tuning strategies and their impact on model 
 5. Run all cells sequentially
 
 
-## 📋 Pipeline Flow
 
-```mermaid
-graph TD
-    A[📁 Raw CSV Data - Kaggle IMDB 50K] --> B[🧹 Data Preprocessing]
-    B --> C[✂️ Data Splitting]
-    C --> D[🔤 Tokenization]
-    D --> E[🧠 Model Training]
-    E --> F[📊 Evaluation]
-    F --> G[📈 Comparison & Analysis]
+---
 
-    B --> |HTML removal, cleaning, lowercase| B
-    C --> |70% Train / 15% Val / 15% Test| C
-    D --> |bert-base-uncased, MAX_LEN=256| D
-    E --> |4 Experiments| E
-    F --> |Accuracy, Precision, Recall, F1, Confusion Matrix| F
-Step	Process	Details
-1️⃣	Raw Data	Kaggle IMDB CSV (50K reviews)
-2️⃣	Preprocessing	HTML removal, URL removal, lowercase, clean special characters
-3️⃣	Data Splitting	70% Train / 15% Validation / 15% Test (Stratified)
-4️⃣	Tokenization	bert-base-uncased tokenizer, MAX_LEN=256
-5️⃣	Model Training	4 Experiments (Full, Frozen, Last 2 Layers, DistilBERT)
-6️⃣	Evaluation	Accuracy, Precision, Recall, F1 Score, Confusion Matrix
-7️⃣	Comparison	Side-by-side analysis of all experiments
-🔍 Sample Predictions
-Predictions made using the best model (Experiment 1: Full Fine-Tuning)
+## 🔍 Sample Predictions
 
-#	Review	Prediction	Confidence	Note
-1	"This movie was absolutely wonderful! The acting was superb."	✅ POSITIVE	99.7%	Clear positive sentiment
-2	"Terrible film. Waste of time. Awful plot and bad acting."	❌ NEGATIVE	99.8%	Clear negative sentiment
-3	"An okay movie, nothing special but watchable."	✅ POSITIVE	57.5%	⚠️ Model correctly shows uncertainty on mixed review
-4	"A masterpiece! Best film I have ever seen in my life."	✅ POSITIVE	99.7%	Strong positive sentiment
-5	"Extremely boring. I fell asleep halfway through."	❌ NEGATIVE	99.6%	Clear negative sentiment
+Predictions made using the best model **(Experiment 1: Full Fine-Tuning)**
+
+---
+
+> **Review:** *"This movie was absolutely wonderful! The acting was superb."*
+>
+> **Prediction:** ✅ **POSITIVE** — Confidence: **99.7%**
+>
+> Clear positive sentiment detected correctly with very high confidence.
+
+---
+
+> **Review:** *"Terrible film. Waste of time. Awful plot and bad acting."*
+>
+> **Prediction:** ❌ **NEGATIVE** — Confidence: **99.8%**
+>
+> Strong negative words identified correctly.
+
+---
+
+> **Review:** *"An okay movie, nothing special but watchable."*
+>
+> **Prediction:** ✅ **POSITIVE** — Confidence: **57.5%** ⚠️
+>
+> Mixed/neutral review. Model correctly shows **low confidence** on ambiguous text.
+> This proves the model **understands uncertainty** — not blindly predicting.
+
+---
+
+> **Review:** *"A masterpiece! Best film I have ever seen in my life."*
+>
+> **Prediction:** ✅ **POSITIVE** — Confidence: **99.7%**
+>
+> Extremely positive sentiment detected with high confidence.
+
+---
+
+> **Review:** *"Extremely boring. I fell asleep halfway through."*
+>
+> **Prediction:** ❌ **NEGATIVE** — Confidence: **99.6%**
+>
+> Clear negative sentiment identified correctly.
+
+---
+
